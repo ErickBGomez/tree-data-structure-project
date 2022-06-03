@@ -6,7 +6,16 @@ namespace ProyectoArbolesUFG
     {
         static void Main(string[] args)
         {
+            #region Variables
+
             cNodo n1, n2, n3, n4;
+
+            int opcion;
+            bool salir = false;
+
+            #endregion
+
+            #region Creación del menú
 
             // Menu
             cArbol menu = new cArbol();
@@ -77,8 +86,65 @@ namespace ProyectoArbolesUFG
             // Café
             n3 = menu.Insertar("Café", TipoNodo.Comida, n2);
 
-            menu.TransversaPreorder(raiz);
+            #endregion
 
+            #region Bienvenida y opciones
+
+            do
+            {
+                Console.Clear();
+
+                Console.WriteLine("Bienvenido al restaurante AAA:\nIngrese la opción que sea realizar:");
+                Console.WriteLine("[1] Consultar menú\n[2] Ver platos pedidos\n[3] Pagar pedido\n[0] Salir");
+
+                // Evitar una Exception cuando se ingresa un valor no numérico
+                try
+                {
+                    opcion = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    opcion = -1;
+                }
+
+                switch (opcion)
+                {
+                    // Consultar menú
+                    case 1:
+                        Console.Clear();
+                        menu.TransversaPreorder(raiz);
+                        Console.ReadKey();
+                        break;
+
+                    // Ver platos pedidos
+                    case 2:
+                        // Llamar esto
+                        // Se recomienda usar listas ligadas para poder guardas los platos que se van ingresando
+                        break;
+
+                    // Pagar pedido
+                    case 3:
+                        // Limpiar los platos pedidos y preguntar si se quiere seguir pidiendo
+                        break;
+
+                    case 0:
+                        salir = true;
+                        Console.WriteLine("Saliendo del sistema, gracias por preferirnos");
+                        Console.ReadKey();
+                        break;
+
+                    default:
+                        
+                        break;
+                }
+
+            }
+            while (!salir);
+
+            
+
+
+            #endregion
         }
     }
 }
