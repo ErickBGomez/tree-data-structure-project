@@ -18,16 +18,19 @@ namespace ProyectoArbolesUFG
     {
         // definimos el comportamiento del nodo
         private string dato;
+        private TipoNodo tipo;
+        private float precio;
+
 
         private cNodo hijo; // Con esto podemos asignar si tiene hijos o hermanos
         private cNodo hermano;
 
-        private TipoNodo tipo;
 
         public string Dato { get => dato; set => dato = value; }
+        public TipoNodo Tipo { get => tipo; set => tipo = value; }
+        public float Precio { get => precio; set => precio = value; }
         public cNodo Hijo { get => hijo; set => hijo = value; }
         public cNodo Hermano { get => hermano; set => hermano = value; }
-        public TipoNodo Tipo { get => tipo; set => tipo = value; }
 
         public cNodo()
         {
