@@ -147,5 +147,29 @@ namespace ProyectoArbolesUFG
                 TransversaPreorder(pNodo.Hermano);
         }
 
+        // Agarrar el nodo que se ingresa en "stringEncontrar" y se realizará una busqueda lineal
+        // Si el nodo deseado se encuentra en el árbol, se guardará en el parámetro de referencia "nodoGuardar"
+        public void AgarrarNodo(cNodo pNodo, string stringEncontrar, ref cNodo nodoGuardar)
+        {
+            // Si el nodo no existe, 
+            if (pNodo == null)
+                return;
+
+            // Si el dato ingresado coincide con el dato del nodo actual, guardarlo en el parámetro de referencia
+            if (stringEncontrar == pNodo.Dato)
+            {
+                nodoGuardar = pNodo;
+            }
+            // Pero si ese no es el nodo que se quiere encontrar:
+            else
+            {
+                // Moverse a un hijo (en el caso que los tenga)
+                if (pNodo.Hijo != null)
+                    AgarrarNodo(pNodo.Hijo, stringEncontrar, ref nodoGuardar);
+                // O pasarse a un hermano (en el caso que los tenga)
+                if (pNodo.Hermano != null)
+                    AgarrarNodo(pNodo.Hermano, stringEncontrar, ref nodoGuardar);
+            }            
+        }
     }
 }

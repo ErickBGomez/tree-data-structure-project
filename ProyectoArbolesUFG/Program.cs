@@ -96,6 +96,12 @@ namespace ProyectoArbolesUFG
             {
                 Console.Clear();
 
+                cNodo guardarNodo = null;
+
+                menu.AgarrarNodo(raiz, "Te", ref guardarNodo);
+
+                Console.WriteLine(guardarNodo);
+
                 Console.WriteLine("Bienvenido al restaurante AAA:\nIngrese la opción que sea realizar:");
                 Console.WriteLine("[1] Consultar menú\n[2] Ver platos pedidos\n[3] Pagar pedido\n[0] Salir");
 
@@ -111,7 +117,6 @@ namespace ProyectoArbolesUFG
 
                     // Ver platos pedidos
                     case 2:
-                        // Llamar esto
                         // Se recomienda usar listas ligadas para poder guardas los platos que se van ingresando
                         break;
 
@@ -162,26 +167,65 @@ namespace ProyectoArbolesUFG
             {
                 Console.Clear();
 
+                // Mostrar el menú completo
                 menu.TransversaPreorder(raiz);
 
                 Console.WriteLine("Ingrese una opción:");
                 Console.WriteLine("[1] Ingresar un pedido\n[0] Salir");
 
-                
                 opcion = IngresarOpcion();
 
                 switch (opcion)
                 {
                     case 1:
-                        string plato;
+                        string plato; // Guardará el string que el usuario ingresará cuando le pida escribir el nombre del plato
+                        cNodo guardarPlato = null; // El nodo encontrado en el árbol será guardado en este puntero
 
                         Console.WriteLine("Ingrese el nombre del plato:");
                         plato = Console.ReadLine();
 
-                        // Pendiente: Buscar entre todos los elementos del árbol con el que coincida lo que ingresó el usuario.
-                        // Luego, si estos es verdadero, imprimir su precio y preguntar por la cantidad.
-                        // En caso que no exista, indicarlo
-                        // En caso que el nodo no es una comida, indicarlo
+                        // Guardar el nodo con el dato que el usuario ingresó
+                        menu.AgarrarNodo(raiz, plato, ref guardarPlato);
+
+                        // En el caso que el nodo ingresado sí existe en el árbol 
+                        if (guardarPlato != null)
+                        {
+                            // Verificar si el nodo es de tipo Comida
+                            if (guardarPlato.Tipo == TipoNodo.Comida)
+                            {
+                                Console.WriteLine($"El plato {guardarPlato.Dato} cuesta ${guardarPlato.Precio}.\n¿Desea agregarlo a su orden?\n[1] Sí\n[0] No");
+
+                                int confirmarPlato = IngresarOpcion();
+
+                                switch (confirmarPlato)
+                                {
+                                    // Sí
+                                    case 1:
+
+                                        // Hacer una lista ligada para guardar todos los platos que se desean ordenar
+
+                                        Console.WriteLine("Plato guardado a su orden.");
+                                        break;
+                                    // No o cualquier otra acción
+                                    default:
+                                        Console.WriteLine("El plato no se guardó a su orden.");
+                                        break;
+                                }
+                            }
+                            // Pero si es de tipo Categoría
+                            else if (guardarPlato.Tipo == TipoNodo.Categoría)
+                            {
+                                Console.WriteLine("Error: El dato que usted ingresó no es un producto que usted pueda ordenar");
+                            }
+                        }
+                        // En el caso que el nodo no existe
+                        else
+                        {
+                            Console.WriteLine("Error: El dato que usted ingresó no existe");
+                        }
+
+                        Console.WriteLine("Presione cualquier tecla para continuar...");
+                        Console.ReadKey();
 
                         break;
                     case 0:
