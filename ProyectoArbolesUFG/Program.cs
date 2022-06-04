@@ -96,12 +96,6 @@ namespace ProyectoArbolesUFG
             {
                 Console.Clear();
 
-                cNodo guardarNodo = null;
-
-                menu.AgarrarNodo(raiz, "Te", ref guardarNodo);
-
-                Console.WriteLine(guardarNodo);
-
                 Console.WriteLine("Bienvenido al restaurante AAA:\nIngrese la opción que sea realizar:");
                 Console.WriteLine("[1] Consultar menú\n[2] Ver platos pedidos\n[3] Pagar pedido\n[0] Salir");
 
