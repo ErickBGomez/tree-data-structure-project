@@ -28,65 +28,67 @@ namespace ProyectoArbolesUFG
             // Tipicos
             n2 = menu.Insertar("Típicos", TipoNodo.Categoría, n1);
 
-            n3 = menu.Insertar("Pupusas", TipoNodo.Comida, 10, n2);
+            n3 = menu.Insertar("Pupusas", TipoNodo.Comida, 0.75f, n2);
 
-            n3 = menu.Insertar("Empanadas", TipoNodo.Comida, 20, n2);
+            n3 = menu.Insertar("Empanadas", TipoNodo.Comida, 1.6f, n2);
 
-            n3 = menu.Insertar("Típicos con plátanos", TipoNodo.Comida, 30, n2);
+            n3 = menu.Insertar("Típicos con plátanos", TipoNodo.Comida, 0.5f, n2);
             // Americanos
             n2 = menu.Insertar("Americanos", TipoNodo.Categoría, n1);
 
-            n3 = menu.Insertar("Hotcakes", TipoNodo.Comida, 40, n2);
+            n3 = menu.Insertar("Hotcakes", TipoNodo.Comida, 0.25f, n2);
 
             // Almuerzo
             n1 = menu.Insertar("Almuerzo", TipoNodo.Categoría, raiz);
 
-            n2 = menu.Insertar("Pollo", TipoNodo.Comida, 50, n1);
+            n2 = menu.Insertar("Pollo", TipoNodo.Comida, 15f, n1);
 
-            n2 = menu.Insertar("Pescado", TipoNodo.Comida, 60, n1);
+            n2 = menu.Insertar("Pescado", TipoNodo.Comida, 12f, n1);
 
-            n2 = menu.Insertar("Carne de res", TipoNodo.Comida, 70, n1);
+            n2 = menu.Insertar("Carne de res", TipoNodo.Comida, 30f, n1);
 
             // Cena
             n1 = menu.Insertar("Cena", TipoNodo.Categoría, raiz);
-            // Típicos
-            n2 = menu.Insertar("Típicos", TipoNodo.Categoría, n1);
 
-            n3 = menu.Insertar("Tamales", TipoNodo.Comida, 80, n2);
+            n2 = menu.Insertar("Tamales", TipoNodo.Comida, 1.5f, n1);
 
-            n2 = menu.Insertar("Pasta", TipoNodo.Comida, 90, n1);
+            n2 = menu.Insertar("Pasta", TipoNodo.Comida, 2f, n1);
 
             // Postre
             n1 = menu.Insertar("Postre", TipoNodo.Categoría, raiz);
 
-            n2 = menu.Insertar("Pan dulce", TipoNodo.Comida, 101.1f, n1);
+            n2 = menu.Insertar("Pan dulce", TipoNodo.Comida, 0.25f, n1);
             // Repostaría
-            n2 = menu.Insertar("Repostería", TipoNodo.Categoría, n2);
+            n2 = menu.Insertar("Repostería", TipoNodo.Categoría, n1);
 
-            n3 = menu.Insertar("Tartaletas", TipoNodo.Comida, 102.2f, n2);
+            n3 = menu.Insertar("Tartaletas", TipoNodo.Comida, 3.5f, n2);
 
-            n3 = menu.Insertar("Brownie", TipoNodo.Comida, 103.3f, n2);
+            n3 = menu.Insertar("Brownie", TipoNodo.Comida, 1.25f, n2);
             // Pastel
-            n3 = menu.Insertar("Pastel", TipoNodo.Categoría, n2);
+            n2 = menu.Insertar("Pasteles", TipoNodo.Categoría, n1);
 
-            n4 = menu.Insertar("Limón", TipoNodo.Comida, 104.4f, n3);
+            n3 = menu.Insertar("Pastel de Limón", TipoNodo.Comida, 10f, n2);
 
-            n3 = menu.Insertar("Helado", TipoNodo.Comida, 105.5f, n2);
+            n3 = menu.Insertar("Pastel de Fresa", TipoNodo.Comida, 12f, n2);
+
+            n3 = menu.Insertar("Pastel de Chocolate", TipoNodo.Comida, 12f, n2);
+
+            n2 = menu.Insertar("Helado", TipoNodo.Comida, 2f, n1);
 
             // Bebida
             n1 = menu.Insertar("Bebida", TipoNodo.Categoría, raiz);
             // Frías
             n2 = menu.Insertar("Frías", TipoNodo.Categoría, n1);
 
-            n3 = menu.Insertar("Malteada", TipoNodo.Comida, 106.6f, n2);
+            n3 = menu.Insertar("Malteada", TipoNodo.Comida, 5f, n2);
 
-            n3 = menu.Insertar("Limonada", TipoNodo.Comida, 107.7f, n2);
+            n3 = menu.Insertar("Limonada", TipoNodo.Comida, 6f, n2);
             // Calientes
             n2 = menu.Insertar("Calientes", TipoNodo.Categoría, n1);
 
-            n3 = menu.Insertar("Té", TipoNodo.Comida, 108.8f, n2);
+            n3 = menu.Insertar("Té", TipoNodo.Comida, 1.25f, n2);
 
-            n3 = menu.Insertar("Café", TipoNodo.Comida, 109.9f, n2);
+            n3 = menu.Insertar("Café", TipoNodo.Comida, 2f, n2);
 
 
             // Lista de ordenes guardadas
@@ -99,10 +101,6 @@ namespace ProyectoArbolesUFG
             do
             {
                 Console.Clear();
-
-
-                Console.WriteLine(ordenesGuardadas.Cantidad());
-
 
                 Console.WriteLine("Bienvenido a .NET Restaurant\nIngrese la opción que sea realizar:");
                 Console.WriteLine("[1] Consultar menú\n[2] Ver platos pedidos\n[3] Pagar pedido\n[0] Salir");
@@ -223,7 +221,7 @@ namespace ProyectoArbolesUFG
                             // Verificar si el nodo es de tipo Comida
                             if (guardarPlato.Tipo == TipoNodo.Comida)
                             {
-                                Console.WriteLine($"\nEl plato {guardarPlato.Dato} cuesta ${guardarPlato.Precio}.\n¿Desea agregarlo a su orden?\n[1] Sí\n[0] No");
+                                Console.WriteLine($"\nEl producto: {guardarPlato.Dato} cuesta ${guardarPlato.Precio}.\n¿Desea agregarlo a su orden?\n[1] Sí\n[0] No");
 
                                 int confirmarPlato = IngresarOpcionNumerica();
 
