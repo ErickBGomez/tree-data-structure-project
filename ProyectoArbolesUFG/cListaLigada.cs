@@ -72,21 +72,70 @@ namespace ProyectoArbolesUFG
             }
             else
             {
-                Console.WriteLine("No hay órdenes guardadas.\nPida sus órdenes en la opción 1 en el menú principal!");
+                Console.WriteLine("No hay órdenes guardadas.\nPida sus órdenes en la opción 1 en el menú principal.");
             }
         }
 
         public void Adicionar(cNodo pNodo, int cantidad)
         {
+            // Verificar si el nodo ya existe
+            cNodo nodoRepetido = AgarrarNodo(pNodo);
+
+            // Si no hay nodos repetidos, agregar el nuevo nodo a la lista
+            if (nodoRepetido == null)
+            {
+                trabajo = ancla;
+
+                while (trabajo.Siguiente != null)
+                {
+                    trabajo = trabajo.Siguiente;
+                }
+
+                pNodo.Cantidad = cantidad;
+                pNodo.Siguiente = null;
+                trabajo.Siguiente = pNodo;
+            }
+            // En el caso que sí se repite
+            else
+            {
+                nodoRepetido.Cantidad += cantidad;
+            }
+        }
+
+        public cNodo AgarrarNodo(cNodo pNodo)
+        {
             trabajo = ancla;
+
             while (trabajo.Siguiente != null)
             {
                 trabajo = trabajo.Siguiente;
-            }
 
-            pNodo.Cantidad = cantidad;
-            pNodo.Siguiente = null;
-            trabajo.Siguiente = pNodo;
+                if (trabajo.Dato == pNodo.Dato)
+                    return trabajo;
+            }
+            return null;
+        }
+
+        public void BorrarElementos()
+        {
+            if (Cantidad() > 0)
+            {
+                int cantidadTotal = Cantidad();
+
+                trabajo = ancla;
+
+                for (int i = 0; i < Cantidad() - 1; i++)
+                {
+                    trabajo = trabajo.Siguiente;
+                }
+
+                trabajo.Siguiente = null;
+
+            }
+            else
+            {
+                Console.WriteLine("Error: No se pudieron eliminar los elementos de la lista: La lista no contiene elementos");
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace ProyectoArbolesUFG
 
         public override string ToString()
         {
-            return "Dato: " + Dato + " Tipo: " + Tipo;
+            return $"Dato: {Dato}, Tipo: {Tipo}, Precio: {Precio}, Cantidad: {Cantidad}";
         }
     }
 }

@@ -137,6 +137,8 @@ namespace ProyectoArbolesUFG
                                 // Sí
                                 case 1:
                                     // Limpiar la lista de órdenes
+                                    ordenesGuardadas.BorrarElementos();
+
                                     Console.WriteLine("Órdenes pagadas, gracias por preferirnos");
                                     break;
 
@@ -195,7 +197,7 @@ namespace ProyectoArbolesUFG
                 // Mostrar el menú completo
                 menu.TransversaPreorder(raiz);
 
-                Console.WriteLine("Ingrese una opción:");
+                Console.WriteLine("\nIngrese una opción:");
                 Console.WriteLine("[1] Ingresar un pedido\n[0] Salir");
 
                 opcion = IngresarOpcionNumerica();
