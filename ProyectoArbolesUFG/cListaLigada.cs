@@ -87,9 +87,7 @@ namespace ProyectoArbolesUFG
                 trabajo = ancla;
 
                 while (trabajo.Siguiente != null)
-                {
                     trabajo = trabajo.Siguiente;
-                }
 
                 pNodo.Cantidad = cantidad;
                 pNodo.Siguiente = null;
@@ -97,9 +95,7 @@ namespace ProyectoArbolesUFG
             }
             // En el caso que sí se repite
             else
-            {
                 nodoRepetido.Cantidad += cantidad;
-            }
         }
 
         public cNodo AgarrarNodo(cNodo pNodo)
@@ -116,26 +112,12 @@ namespace ProyectoArbolesUFG
             return null;
         }
 
-        public void BorrarElementos()
+        public void LimpiarLista()
         {
             if (Cantidad() > 0)
-            {
-                int cantidadTotal = Cantidad();
-
-                trabajo = ancla;
-
-                for (int i = 0; i < Cantidad() - 1; i++)
-                {
-                    trabajo = trabajo.Siguiente;
-                }
-
-                trabajo.Siguiente = null;
-
-            }
+                ancla.Siguiente = null;
             else
-            {
                 Console.WriteLine("Error: No se pudieron eliminar los elementos de la lista: La lista no contiene elementos");
-            }
         }
     }
 }
