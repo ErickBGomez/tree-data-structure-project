@@ -20,17 +20,22 @@ namespace ProyectoArbolesUFG
         private string dato;
         private TipoNodo tipo;
         private float precio;
+        private float cantidad;
 
-
+        // Punteros para el árbol
         private cNodo hijo; // Con esto podemos asignar si tiene hijos o hermanos
         private cNodo hermano;
 
+        // Puntero para las listas ligadsa
+        private cNodo siguiente;
 
         public string Dato { get => dato; set => dato = value; }
         public TipoNodo Tipo { get => tipo; set => tipo = value; }
         public float Precio { get => precio; set => precio = value; }
+        public float Cantidad { get => cantidad; set => cantidad = value; }
         public cNodo Hijo { get => hijo; set => hijo = value; }
         public cNodo Hermano { get => hermano; set => hermano = value; }
+        public cNodo Siguiente { get => siguiente; set => siguiente = value; }
 
         public cNodo()
         {

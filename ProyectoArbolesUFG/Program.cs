@@ -17,7 +17,7 @@ namespace ProyectoArbolesUFG
 
             #endregion
 
-            #region Creación del menú
+            #region Creación del menú y lista
 
             // Menu
             cArbol menu = new cArbol();
@@ -88,6 +88,10 @@ namespace ProyectoArbolesUFG
             // Café
             n3 = menu.Insertar("Café", TipoNodo.Comida, 109.9f, n2);
 
+
+            // Lista de ordenes guardadas
+            cListaLigada ordenesGuardadas = new cListaLigada();
+
             #endregion
 
             #region Bienvenida y opciones
@@ -100,23 +104,50 @@ namespace ProyectoArbolesUFG
                 Console.WriteLine("[1] Consultar menú\n[2] Ver platos pedidos\n[3] Pagar pedido\n[0] Salir");
 
                 
-                opcion = dialogos.IngresarOpcion();
+                opcion = dialogos.IngresarOpcionNumerica();
 
                 switch (opcion)
                 {
                     // Consultar menú
                     case 1:
-                        dialogos.MostrarOpcionesMenu(menu, raiz);
+                        dialogos.MostrarOpcionesMenu(menu, raiz, ordenesGuardadas);
                         break;
 
                     // Ver platos pedidos
                     case 2:
-                        // Se recomienda usar listas ligadas para poder guardas los platos que se van ingresando
+                        ordenesGuardadas.Transversa(false);
+
+                        Console.WriteLine("\nPresione cualquier tecla para salir...");
+                        Console.ReadKey();
                         break;
 
                     // Pagar pedido
                     case 3:
-                        // Limpiar los platos pedidos y preguntar si se quiere seguir pidiendo
+                        ordenesGuardadas.Transversa(true);
+
+                        if (ordenesGuardadas.Cantidad() > 0)
+                        {
+                            Console.WriteLine("\n¿Desea pagar sus órdenes?:");
+                            Console.WriteLine("[1] Sí\n[0] No");
+
+                            int confirmarPago = dialogos.IngresarOpcionNumerica();
+
+                            switch (confirmarPago)
+                            {
+                                // Sí
+                                case 1:
+                                    // Limpiar la lista de órdenes
+                                    Console.WriteLine("Órdenes pagadas, gracias por preferirnos");
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Las órdenes no se han pagado");
+                                    break;
+                            }
+                        }
+
+                        Console.WriteLine("\nPresione cualquier tecla para continuar...");
+                        Console.ReadKey();
                         break;
 
                     case 0:
@@ -126,7 +157,7 @@ namespace ProyectoArbolesUFG
                         break;
 
                     default:
-                        
+                        // Si se ingresa un input que no sea numérico, simplemente se repite el bucle una vez más
                         break;
                 }
 
@@ -140,7 +171,7 @@ namespace ProyectoArbolesUFG
         }
 
         // Evitar una Exception cuando se ingresa un valor no numérico
-        public int IngresarOpcion()
+        public int IngresarOpcionNumerica()
         {
             try
             {
@@ -152,7 +183,7 @@ namespace ProyectoArbolesUFG
             }
         }
 
-        private void MostrarOpcionesMenu(cArbol menu, cNodo raiz)
+        private void MostrarOpcionesMenu(cArbol menu, cNodo raiz, cListaLigada ordenesGuardadas)
         {
             int opcion;
             bool salir = false;
@@ -167,7 +198,7 @@ namespace ProyectoArbolesUFG
                 Console.WriteLine("Ingrese una opción:");
                 Console.WriteLine("[1] Ingresar un pedido\n[0] Salir");
 
-                opcion = IngresarOpcion();
+                opcion = IngresarOpcionNumerica();
 
                 switch (opcion)
                 {
@@ -175,7 +206,7 @@ namespace ProyectoArbolesUFG
                         string plato; // Guardará el string que el usuario ingresará cuando le pida escribir el nombre del plato
                         cNodo guardarPlato = null; // El nodo encontrado en el árbol será guardado en este puntero
 
-                        Console.WriteLine("Ingrese el nombre del plato:");
+                        Console.WriteLine("\nIngrese el nombre del plato:");
                         plato = Console.ReadLine();
 
                         // Guardar el nodo con el dato que el usuario ingresó
@@ -187,18 +218,30 @@ namespace ProyectoArbolesUFG
                             // Verificar si el nodo es de tipo Comida
                             if (guardarPlato.Tipo == TipoNodo.Comida)
                             {
-                                Console.WriteLine($"El plato {guardarPlato.Dato} cuesta ${guardarPlato.Precio}.\n¿Desea agregarlo a su orden?\n[1] Sí\n[0] No");
+                                Console.WriteLine($"\nEl plato {guardarPlato.Dato} cuesta ${guardarPlato.Precio}.\n¿Desea agregarlo a su orden?\n[1] Sí\n[0] No");
 
-                                int confirmarPlato = IngresarOpcion();
+                                int confirmarPlato = IngresarOpcionNumerica();
 
                                 switch (confirmarPlato)
                                 {
                                     // Sí
                                     case 1:
 
-                                        // Hacer una lista ligada para guardar todos los platos que se desean ordenar
+                                        Console.WriteLine("\nIngrese la cantidad de su orden:");
 
-                                        Console.WriteLine("Plato guardado a su orden.");
+                                        int cantidadPlato = IngresarOpcionNumerica();
+
+                                        if (cantidadPlato > 0)
+                                        {
+                                            ordenesGuardadas.Adicionar(guardarPlato, cantidadPlato);
+
+                                            Console.WriteLine("Plato guardado a su orden.");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Error: Cantidad no válida");
+                                        }
+                                            
                                         break;
                                     // No o cualquier otra acción
                                     default:
