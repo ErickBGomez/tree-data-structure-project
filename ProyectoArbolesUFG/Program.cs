@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* Proyecto hecho por: Grupo 3
+Iván Enrique Galdámez Guzmán. GG100221
+Jasson Ernesto García Cortez. GC100720
+Erick Bladimir Gómez Hernández. GH100321
+María José Granillo Guardado. GG101921
+Diego Ernesto Guerrero Zarate. GZ100221 
+ */
+
+using System;
 
 namespace ProyectoArbolesUFG
 {
